@@ -34,7 +34,7 @@ class ApptController extends Controller {
      */
     public function addVisitOrder() {
 
-        $closeCount = M('appt_visit_close')->where(['close_time' => $_POST['appt_time']])->count();
+        $closeCount = M('appt_visit_close')->where(array('close_time' => $_POST['appt_time']))->count();
 
         if ($closeCount > 0) {
             $return['flag'] = 0;
