@@ -29,7 +29,7 @@ class SysUserGroupController extends BaseDBController {
      * function:显示用户组列表
      */
     public function showList() {
-        parent::showData($this->groupModel, [], [], '', '');
+        parent::showData($this->groupModel, array(), array(), '', '');
     }
 
     public function saveUserGroup() {
