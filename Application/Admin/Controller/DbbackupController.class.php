@@ -86,7 +86,7 @@ class DbbackupController extends BaseDBController {
      */
     public function showList() {
         $backupModel = M(C('DB_DB_BACKUP'));
-        parent::showData($backupModel, [], [], '', '');
+        parent::showData($backupModel, array(), array(), '', '');
     }
 
     /**
