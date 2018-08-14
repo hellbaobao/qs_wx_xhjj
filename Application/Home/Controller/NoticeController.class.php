@@ -39,7 +39,7 @@ class NoticeController extends Controller {
      */
     public function getList() {
         $cat_id = $_POST['cat_id'];
-        $num = C('PAGE_NUM')['notice'] * $_POST['page'];
+        $num = 7 * $_POST['page'];
 
         $noticeArr = M('NoticeInfo')->where('is_publish=1 and cat_id=' . $cat_id)->order('id desc')->limit($num)->select();
         $count = M('NoticeInfo')->where('is_publish=1 and cat_id=' . $cat_id)->count();
