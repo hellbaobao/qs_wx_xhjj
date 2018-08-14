@@ -14,7 +14,7 @@ return array(
     'DB_ALL_ATTACH' => 'Sys_all_attach', //配置附件数据库
     'DB_CONFIG_DEF' => 'Sys_config_def', //配置系统字典数据库
     'DB_DB_BACKUP' => 'Sys_db_backup', //配置数据备份数据库
-    'BACKUP_MYSQL_PATH' => 'E:/wamp/www/qskj_project_sqk_debug/trunk/dbsql/', //配置数据备份数据库
+    'BACKUP_MYSQL_PATH' => 'E:/www_root/dbsql/', //配置数据备份数据库
     'DB_USER_INFO' => 'Sys_user_info', //配置用户信息数据库
     'DB_USER_GROUP' => 'Sys_user_group', //配置用户组数据库
 	
