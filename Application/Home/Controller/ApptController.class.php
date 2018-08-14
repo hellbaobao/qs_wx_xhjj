@@ -45,6 +45,13 @@ class ApptController extends Controller {
         }
         $this->ajaxReturn($return, 'JSON');
     }
+    
+    public function getHsList() {
+
+        $flag = M('appt_hssy')->select();
+        dump($flag);
+    }
+    
     public function addVisitOrder() {
 
         $closeCount = M('appt_visit_close')->where(array('close_time' => $_POST['appt_time']))->count();
