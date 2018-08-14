@@ -28,7 +28,7 @@ class SysPrivInfoController extends BaseDBController {
     public function showList() {
         $fieldStr = parent::madField('sys_priv_info.*', 'sys_priv_cat.cat_name');
         $joinStr = parent::madJoin('sys_priv_info.cat_id', 'sys_priv_cat.id');
-        parent::showData($this->infoModel, [], [], $joinStr, $fieldStr, $this->dbFix . 'sys_priv_cat.parent_id asc');
+        parent::showData($this->infoModel, array(), array(), $joinStr, $fieldStr, $this->dbFix . 'sys_priv_cat.parent_id asc');
     }
 
     /**
