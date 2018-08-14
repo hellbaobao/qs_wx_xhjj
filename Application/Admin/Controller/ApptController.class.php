@@ -33,7 +33,7 @@ class ApptController extends BaseDBController {
         $dd = $_POST['dd'];
         $date = strtotime($yy . '-' . $mm . '-' . $dd);
         $date = date('Y-m-d', $date);
-        $flag = M('appt_visit_close')->add(['close_time' => $date]);
+        $flag = M('appt_visit_close')->add(array('close_time' => $date));
         if ($flag > 0) {
             $return['flag'] = 1;
         } else {
