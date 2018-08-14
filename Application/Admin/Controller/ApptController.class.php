@@ -78,7 +78,7 @@ class ApptController extends BaseDBController {
             $return['status'] = $visitStatus;
             $return['count'] = 0;
             $return['sum'] = 0;
-            $return['list'] = [];
+            $return['list'] = array();
         }
         $this->ajaxReturn($return, 'JSON');
     }
