@@ -422,11 +422,11 @@ function dd($data, $is_exist = true) {
  * @param   array    $data  返回数据
  * @return  array
  */
-function syncData($ret = 0, $msg = '操作成功', $data = []) {
-    $returnData = [
+function syncData($ret = 0, $msg = '操作成功', $data = array()) {
+    $returnData = array(
         'ret' => $ret,
         'msg' => $msg,
-    ];
+    );
     if (!empty($data)) {
         $returnData['data'] = $data;
     }
