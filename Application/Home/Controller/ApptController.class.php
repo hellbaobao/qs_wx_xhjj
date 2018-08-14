@@ -26,12 +26,25 @@ class ApptController extends Controller {
         $this->assign('key', 'wx');
         $this->display();
     }
+    
+    
 
     /**
      * -------------------------------------------------------------------------
      * 数据接口
      * -------------------------------------------------------------------------
      */
+     public function addHssy() {
+
+        $flag = M('appt_hssy')->add($_POST);
+        if ($flag > 0) {
+            $return['flag'] = 1;
+        } else {
+            $return['flag'] = 0;
+            $return['msg'] = "数据插入失败！";
+        }
+        $this->ajaxReturn($return, 'JSON');
+    }
     public function addVisitOrder() {
 
         $closeCount = M('appt_visit_close')->where(array('close_time' => $_POST['appt_time']))->count();
