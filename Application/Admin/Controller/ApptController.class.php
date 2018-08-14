@@ -66,9 +66,9 @@ class ApptController extends BaseDBController {
 
         $date = date('Y-m-d', strtotime($yy . '-' . $mm . '-' . $dd));
         $visitStatus = $this->getIsCloseVisit($date);
-        $visitCount = M('appt_visit_info')->where(['appt_time' => $date])->count();
-        $visitList = M('appt_visit_info')->field('*,sum(appt_num) as sum_num')->where(['appt_time' => $date])->group('id')->select();
-        $visitSum = M('appt_visit_info')->field('sum(appt_num) as sum_num')->where(['appt_time' => $date])->select();
+        $visitCount = M('appt_visit_info')->where(array('appt_time' => $date))->count();
+        $visitList = M('appt_visit_info')->field('*,sum(appt_num) as sum_num')->where(array('appt_time' => $date))->group('id')->select();
+        $visitSum = M('appt_visit_info')->field('sum(appt_num) as sum_num')->where(array('appt_time' => $date))->select();
         if ($visitCount != 0) {
             $return['status'] = $visitStatus;
             $return['count'] = $visitCount;
