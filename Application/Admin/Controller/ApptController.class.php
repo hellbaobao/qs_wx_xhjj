@@ -89,7 +89,7 @@ class ApptController extends BaseDBController {
      * -------------------------------------------------------------------------
      */
     public function getIsCloseVisit($date) {
-        $flag = M('appt_visit_close')->where(['close_time' => $date])->count();
+        $flag = M('appt_visit_close')->where(array('close_time' => $date))->count();
         if ($flag != 0) {
             return TRUE;
         } else {
