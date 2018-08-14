@@ -76,7 +76,7 @@ class ApptController extends Controller {
      * 获取列表
      */
     public function getList() {
-        $num = C('PAGE_NUM')['apptlearn'] * $_POST['page'];
+        $num = 7 * $_POST['page'];
 
         $apptlearnArr = M('ApptLearnInfo')->where('is_publish=1')->order('id desc')->limit($num)->select();
         $count = M('ApptLearnInfo')->where('is_publish=1')->count();
