@@ -49,7 +49,7 @@ class ApptController extends BaseDBController {
         $dd = $_POST['dd'];
         $date = strtotime($yy . '-' . $mm . '-' . $dd);
         $date = date('Y-m-d', $date);
-        $flag = M('appt_visit_close')->where(['close_time' => $date])->delete();
+        $flag = M('appt_visit_close')->where(array('close_time' => $date))->delete();
         if ($flag > 0) {
             $return['flag'] = 1;
         } else {
