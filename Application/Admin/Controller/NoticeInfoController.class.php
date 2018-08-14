@@ -27,25 +27,6 @@ class NoticeInfoController extends BaseDBController {
         $this->attachModel = D('SysAllAttach');
     }
 
-    public function getWxArr() {
-        $url = $_POST['url'];
-        $html = file_get_contents($url);
-        preg_match('/<body[^>]+>(.+)\s+<\/body>/s', $html, $arr);
-        $html = $arr[0];
-        $data = QueryList::Query($html, [
-                    'title' => ['.rich_media_title', 'text'],
-                    'author' => ['#js_name', 'text'],
-                    'content' => ['.rich_media_content', 'html']
-                        ]
-                )->data;
-        if(!empty($data)){
-            $return['flag']=1;
-            $return['data']=$data[0];
-        }else{
-            $return['flag']=0;
-        }
-        $this->ajaxReturn($return, 'JSON');
-    }
 
     /**
      * function:显示通知信息列表
