@@ -10,7 +10,7 @@
         <script type="application/javascript" src="/Public/admin/js/notice/noticeCat.js"></script>
     </head>
     <body>
-        <div class="option_search">
+        <div class="option_search" id="cxk">
             <button type="button" class="btn btn-success addNoticeCat" id="addCatLayer-btn" style="height: 34px;">
                 <span class="glyphicon glyphicon-plus"></span> 新增
             </button>
@@ -18,7 +18,7 @@
                 <span class="glyphicon glyphicon-trash"></span> 批量删除
             </button>
         </div>
-        <div class="table_content">
+        <div class="table_content" id="lbk">
             <table class="table table-hover">
                 <tr>
                     <th style="width: 50px;">全选</th>
@@ -111,3 +111,6 @@
         </div>
     </div>
 </html>
+<script src="__PUBLIC__/admin/plugin/frameworks/Tour/tour.js"></script>
+<link rel="stylesheet" href="__PUBLIC__/admin/plugin/frameworks/Tour/tour-default.css">
+<script src="__PUBLIC__/admin/js/yd/yd-noticecat.js"></script>
