@@ -34,23 +34,6 @@ class ApptController extends Controller {
      * 数据接口
      * -------------------------------------------------------------------------
      */
-     public function addHssy() {
-
-        $flag = M('appt_hssy')->add($_POST);
-        if ($flag > 0) {
-            $return['flag'] = 1;
-        } else {
-            $return['flag'] = 0;
-            $return['msg'] = "数据插入失败！";
-        }
-        $this->ajaxReturn($return, 'JSON');
-    }
-    
-    public function getHsList() {
-
-        $flag = M('appt_hssy')->select();
-        dump($flag);
-    }
     
     public function addVisitOrder() {
 
