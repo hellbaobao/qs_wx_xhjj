@@ -83,6 +83,31 @@ class ApptController extends BaseDBController {
         $this->ajaxReturn($return, 'JSON');
     }
 
+    public function getCloseAndHave() {
+        $start = $_POST['start'];
+        $end = $_POST['end'];
+        $start = date('Y-m-d', strtotime($start));
+        $end = date('Y-m-d', strtotime($end));
+        $whereArr = array('between', $start . ',' . $end);
+        $where['close_time'] = $whereArr;
+        $closeList = M('appt_visit_close')->where($where)->group('close_time')->select();
+        if (!empty($closeList)) {
+            for ($i = 0; $i < count($closeList); $i++) {
+                $closeData[] = (int) date('Y', strtotime($closeList[$i]['close_time'])) . '-' . (int) date('m', strtotime($closeList[$i]['close_time'])) . '-' . (int) date('d', strtotime($closeList[$i]['close_time']));
+            }
+        }
+        $where1['appt_time'] = $whereArr;
+        $orderList = M('appt_visit_info')->where($where1)->group('appt_time')->select();
+        if (!empty($orderList)) {
+            for ($j = 0; $j < count($orderList); $j++) {
+                $orderData[] = (int) date('Y', strtotime($orderList[$j]['appt_time'])) . '-' . (int) date('m', strtotime($orderList[$j]['appt_time'])) . '-' . (int) date('d', strtotime($orderList[$j]['appt_time']));
+            }
+        }
+        $return['close'] = $closeData;
+        $return['order'] = $orderData;
+        $this->ajaxReturn($return, 'JSON');
+    }
+
     /**
      * -------------------------------------------------------------------------
      * 内部接口

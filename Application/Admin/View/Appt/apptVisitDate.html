@@ -55,7 +55,7 @@
                     $.post(c_path + '/setCloseVisitDate', {'yy': yy, 'mm': mm, 'dd': dd}, function (data) {
                         if (data.flag == 1) {
                             layer.msg(constants.SUCCESS, {time: 1000}, function () {
-//                                location.reload();
+                                location.reload();
                                 dateonclick(yy, mm, dd);
                             });
                         } else {
@@ -73,7 +73,7 @@
                     $.post(c_path + '/delCloseVisitDate', {'yy': yy, 'mm': mm, 'dd': dd}, function (data) {
                         if (data.flag == 1) {
                             layer.msg(constants.SUCCESS, {time: 1000}, function () {
-//                                location.reload();
+                                location.reload();
                                 dateonclick(yy, mm, dd);
                             });
                         } else {
@@ -86,6 +86,14 @@
         <script type="text/javascript" src="/Public/admin/Plugin/wnDate/js/simple-calendar.js"></script>
     </head>
     <body>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="alert alert-success">
+                    点击相应日期查看预约情况，<span class="glyphicon glyphicon-ban-circle" style="color:red;"></span>&#12288;表示该日闭馆，<span class="glyphicon glyphicon-user" style="color:green;"></span>&#12288;表示该日有预约。
+                    
+                </div>
+            </div>
+        </div>
         <div class="row">
             <div class="col-md-5">
                 <div id='container'></div>
@@ -137,6 +145,26 @@
                 var d = mydate.getDate();
                 dateonclick(y, m, d);
             });
+            function getSelDay() {
+                var a = myCalendar.getSelectedday();
+                console.log(a);
+                dateonclick(a[0], a[1], a[2]);
+            }
+            function getCloseAndHave(num) {
+                console.log(num);
+                $.post(c_path + '/getCloseAndHave', {'start': num[0], 'end': num[1]}, function (data) {
+                    if (data.close.length != 0) {
+                        for (var i = 0; i < data.close.length; i++) {
+                            $('#' + data.close[i]).siblings(".glyphicon-ban-circle").css('display', 'block');
+                        }
+                    }
+                    if (data.order.length != 0) {
+                        for (var j = 0; j < data.order.length; j++) {
+                            $('#' + data.order[j]).siblings(".glyphicon-user").css('display', 'block');
+                        }
+                    }
+                }, 'json');
+            }
         </script>
 
 

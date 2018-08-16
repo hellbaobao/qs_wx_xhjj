@@ -43,24 +43,16 @@
                 <div class="mui-row">
                     <div class="mui-col-sm-12 mui-col-xs-12" style="margin-top: 5px;">
                         <div>
-                            <section data-role="paragraph" class="editor">
-                                <p>
-                                    <br/>
-                                </p>
-                            </section>
-                            <section class="editor" data-tools="懒人微信编辑器" data-id="90211">
-                                <section style="margin-top: 1em; margin-bottom: 1em; text-align: center;">
-                                    <section style="margin-bottom: -1.85em;">
-                                        <section style="margin-top: 0.3em; height: 0.3em; background-color: rgb(159, 163, 174);"></section>
-                                        <section style="margin-top: 0.3em; height: 0.3em; background-color: rgb(159, 163, 174);"></section>
-                                        <section style="margin-top: 0.3em; height: 0.3em; background-color: rgb(159, 163, 174);"></section>
+                            <section style="border-style: solid; border-width: 1px 1px 1px 60px; border-color: rgb(53, 195, 201); padding: 10px 0px; margin: 10px 0px;" class="ImbBorder" border-width="1" border-style="solid" border-radius="0" border-color="rgb(53, 195, 201)">
+                                <section style="margin:0 ; padding:5px 0 5px 20px; color: rgb(53,195,201);">
+                                    <section style="font-weight: bold; color: inherit; font-size:30px;" class="ImbWord">
+                                        讲师：<span class='teacher'></span></br>
                                     </section>
-                                    <section style="padding-right: 15px; padding-left: 15px; display: inline-block; vertical-align: bottom; line-height: 2.3em;  min-height: 2.3em !important; background-color: rgb(255, 179, 179);">
-                                        <p class="brush" style="color: rgb(255, 255, 255);font-size:16px;min-width:1px;" data-brushtype="text">
-                                            讲师：<span class='teacher'></span></br>时间：<span class="start_time"></span>
-                                        </p>
-
-                                    </section>
+                                </section>
+                                <section style="margin:0; padding:5px 0px 5px 20px; box-sizing:border-box; color: rgb(53,195,201); border-top:2px solid rgb(53,195,201); line-height:1.75em" class="ImbWord ImbBorder" border-color="rgb(53,195,201)">
+                                    <p style=" margin:0; color: inherit; font-size:18px; font-weight:bold">
+                                         时间：<span class="start_time"></span>
+                                    </p>
                                 </section>
                             </section>
                         </div>
