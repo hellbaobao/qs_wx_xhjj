@@ -3,7 +3,7 @@
 
     <head>
         <meta charset="utf-8">
-        <title>文章列表</title>
+        <title>热搜</title>
         <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
         <meta name="apple-mobile-web-app-capable" content="yes">
         <meta name="apple-mobile-web-app-status-bar-style" content="black">
@@ -18,8 +18,22 @@
     <body id="body">
         <!--主体部分-->
         <div class="mui-content" style="background-color: #fff;">
-
-
+            <div>
+                <section style="text-align: center;">
+                    <section style="text-align: center;display: inline-block;">
+                        <section style="width:1.3em;text-align:left;margin-bottom: -46px;margin-left: -15px;">
+                            <section style="display: inline-block;">
+                                <img style="width:100%;display: block;transform:rotate(0deg);" src="http://image2.135editor.com/cache/remote/aHR0cHM6Ly9tbWJpei5xbG9nby5jbi9tbWJpel9wbmcvN1FSVHZrSzJxQzRpY1NRdFlxOGlicE8wNGNlQ2lhZEdFNkl4V3dkUlprcUJQNGljVWljbXZpY0w5ZWZXU29aWlpwRHhicGlhZnF5N0xZMjE2emFDSVNaaDVVNHJBLzA="/>
+                            </section>
+                        </section>
+                        <section style="display: inline-block;border: 1px solid #198247;border-top-width:4px;">
+                            <section style="font-family: &quot;微软雅黑&quot;;font-size: 16px;letter-spacing: 1.5px;color: #198247;text-align: center;padding: 4px 1em 6px 1em;">
+                                热搜：<?php echo ($key); ?>
+                            </section>
+                        </section>
+                    </section>
+                </section>
+            </div>
             <div>
                 <!--list页面部分-->
                 <ul class="mui-table-view" id="noticeList">
@@ -39,7 +53,8 @@
                         gestureConfig: {
                             doubletap: true, //双击关闭
                         }
-                    });</script>
+                    });
+</script>
 <?php echo ($Assigndata); ?>
 <script src="/Public/home/js/common.js"></script>
 <script type="text/javascript">
@@ -48,15 +63,15 @@
                         getList(1, key);
                     });
                     function getList(page) {
-                        $.post(c_path + "/getList", {'page': page, 'key': key}, function (data) {
+                        $.post(c_path + "/getHotList", {'page': page, 'key': key}, function (data) {
                             //通知公告
                             var str = '';
                             if (data.flag == 1) {
                                 for (var i = 0; i < data.data.length; i++) {
 
 
-                                    str += '<div class="mui-card" style="border: 1px solid #bbb;box-shadow: 0 0 10px #bbb;">';
-                                    str += '<a class="mui-card-header" style="color:#000;" href="' + data.data[i]["href"] + '" target="_blank">('+ data.data[i]["id"]+')&nbsp;'+data.data[i]["title"] + '</a>';
+                                    str += '<div class="mui-card" style="border-color:blue;">';
+                                    str += '<a class="mui-card-header" style="color:#000;" href="' + data.data[i]["href"] + '" target="_blank">' + data.data[i]["id"] + '&nbsp;' + data.data[i]["title"] + '</a>';
                                     str += '<a class="mui-card-content" style="color:#000;" href="' + data.data[i]["href"] + '" target="_blank">';
                                     str += '<div class="mui-card-content-inner">';
                                     str += '<p>' + data.data[i]["info"] + '</p>';

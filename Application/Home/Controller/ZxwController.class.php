@@ -28,6 +28,13 @@ class ZxwController extends Controller {
         $this->display();
     }
 
+    public function hotlist() {
+        $key = $_GET['key'];
+        $this->assign('key', $key);
+        $this->assign('data', $data);
+        $this->display();
+    }
+
     /**
      * 获取列表
      */
@@ -44,20 +51,80 @@ class ZxwController extends Controller {
                     'href' => array('li .img-box a', 'href'),
                     'author' => array('li .txt-box .s-p .account', 'text'),
                     'author_link' => array('li .txt-box .s-p .account', 'href'),
+                    'datetime' => array('li .txt-box .s-p .s2', 't'),
                 ))->data;
-        
+
         $returnData['ajaxLoad'] = '点击加载更多';
         $returnData['is_end'] = 0;
 
         if (empty($noticeArr)) {
             $returnData['flag'] = 0;
         } else {
+            for ($i = 0; $i < count($noticeArr); $i++) {
+                $noticeArr[$i]['id'] = ($page - 1) * 20 + $i + 1;
+                $noticeArr[$i]['datetime'] = tranTime(date('Y-m-d H:i:s', $noticeArr[$i]['datetime']));
+            }
             $returnData['page'] = $_POST['page'];
 
             $returnData['flag'] = 1;
             $returnData['data'] = $noticeArr;
         }
-        $returnData['sql'] = M('NoticeInfo')->getLastSql();
+        $this->ajaxReturn($returnData);
+    }
+
+    public function hottop() {
+        header("content-type:text/html;charset=utf-8");
+        $data = QueryList::Query("http://weixin.sogou.com/", array(
+                    'title' => array('.snb-right .aside ol li a', 'text'),
+                    'hot' => array('.snb-right .aside ol li .lan-line span', 'style'),
+                ))->data;
+        for ($i = 0; $i < count($data); $i++) {
+            $data[$i]['hot'] = substr($data[$i]['hot'], 6);
+        }
+//        dump($data);
+        $this->assign('list', $data);
+        $this->assign('date', date("Y年m月d日"));
+        $this->display();
+    }
+
+    public function getHotList() {
+        $key = $_POST['key'];
+        $page = $_POST['page'];
+        header("content-type:text/html;charset=utf-8");
+        $noticeArr = QueryList::Query("http://weixin.sogou.com/weixin?query=" . $key . "&s_from=hotnews&type=2&page=" . $page . "&ie=utf8", array(
+                    'title' => array('.news-list li .txt-box h3 a', 'text'),
+                    'info' => array('.news-list li .txt-box .txt-info', 'text'),
+                    'img' => array('.news-list li .img-box a img', 'src'),
+                    'href' => array('.news-list li .img-box a', 'href'),
+                    'author' => array('.news-list li .txt-box .s-p .account', 'text'),
+                    'author_link' => array('.news-list li .txt-box .s-p .account', 'href'),
+                    'datetime' => array('.news-list li .txt-box .s-p .s2', 'html'),
+                ))->data;
+//        if (empty($noticeArr)) {
+//            $html = file_get_contents("http://weixin.sogou.com/weixin?query=" . $key . "&s_from=hotnews&type=2&page=" . $page . "&ie=utf8");
+//            echo "http://weixin.sogou.com/weixin?query=" . $key . "&s_from=hotnews&type=2&page=" . $page . "&ie=utf8";
+//            echo $html;
+//            exit;
+//        }
+
+        $returnData['ajaxLoad'] = '点击加载更多';
+        $returnData['is_end'] = 0;
+
+        if (empty($noticeArr)) {
+            $returnData['flag'] = 0;
+        } else {
+            for ($i = 0; $i < count($noticeArr); $i++) {
+                $noticeArr[$i]['id'] = ($page - 1) * 10 + $i + 1;
+                $time = explode("'", $noticeArr[$i]['datetime']);
+                $noticeArr[$i]['datetime'] = tranTime(date('Y-m-d H:i:s', $time[1]));
+            }
+
+//            dump($noticeArr);
+            $returnData['page'] = $_POST['page'];
+
+            $returnData['flag'] = 1;
+            $returnData['data'] = $noticeArr;
+        }
         $this->ajaxReturn($returnData);
     }
 

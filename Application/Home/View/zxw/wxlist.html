@@ -39,8 +39,7 @@
                         gestureConfig: {
                             doubletap: true, //双击关闭
                         }
-                    });
-</script>
+                    });</script>
 {$Assigndata}
 <script src="__PUBLIC__/home/js/common.js"></script>
 <script type="text/javascript">
@@ -55,21 +54,35 @@
                             if (data.flag == 1) {
                                 for (var i = 0; i < data.data.length; i++) {
 
-                                    str += '<li class="mui-table-view-cell mui-media">';
-                                    str += '<a href="' + data.data[i]["href"] + '" target="_blank">';
-                                    str += '<div class="mui-media-body">' +
-                                            '<div class="mui-ellipsis-2">' + data.data[i]["title"] + '</div>' +
-                                            '<p class="mui-ellipsis-2">' + data.data[i]["info"] + '</p>' +
-                                            '</div>' +
-                                            '</a>' +
-                                            '</br><a href="' + data.data[i]["author_link"] + '" target="_blank" style="color:#00BFFF">【' + data.data[i]["author"] + '】</a>' +
-                                            '</li>';
+
+                                    str += '<div class="mui-card" style="border: 1px solid #bbb;box-shadow: 0 0 10px #bbb;">';
+                                    str += '<a class="mui-card-header" style="color:#000;" href="' + data.data[i]["href"] + '" target="_blank">('+ data.data[i]["id"]+')&nbsp;'+data.data[i]["title"] + '</a>';
+                                    str += '<a class="mui-card-content" style="color:#000;" href="' + data.data[i]["href"] + '" target="_blank">';
+                                    str += '<div class="mui-card-content-inner">';
+                                    str += '<p>' + data.data[i]["info"] + '</p>';
+                                    str += '</div>';
+                                    str += '</a>';
+                                    str += '<div class="mui-card-footer">';
+                                    str += '<a href="' + data.data[i]["author_link"] + '" target="_blank"  class="mui-card-link">【' + data.data[i]["author"] + '】</a>';
+                                    str += '<a class="mui-card-link">' + data.data[i]["datetime"] + '</a>';
+                                    str += '</div>';
+                                    str += '</div>';
+
+//                            str += '<li class="mui-table-view-cell mui-media">';
+//                    str += '<a href="' + data.data[i]["href"] + '" target="_blank">';
+//                    str += '<div class="mui-media-body">' +
+//                            '<div class="mui-ellipsis-2">' + data.data[i]["title"] + '</div>' +
+//                            '<p class="mui-ellipsis-2">' + data.data[i]["info"] + '</p>' +
+//                            '</div>' +
+//                            '</a>' +
+//                            '</br><a href="' + data.data[i]["author_link"] + '" target="_blank" style="color:#00BFFF">【' + data.data[i]["author"] + '】</a>fdsfsd' +
+//                            '</li>';
                                 }
                             } else {
                                 str = '<li class="mui-table-view-cell font999" style="padding-right: 10px;text-align:center;">(＞﹏＜)&#12288;暂无消息</li>';
                             }
 
-                            $("#noticeList").html(str);
+                            $("#noticeList").append(str);
                             $("#page").val(data.page);
                             if (data.is_end == 1) {
                                 $("#loadMore").removeAttr('onclick');
@@ -79,7 +92,6 @@
 
                             mui("#loadMore").button('reset');
                             $("#loadMore").html(data.ajaxLoad);
-
                         }, 'json');
                     }
 
