@@ -26,9 +26,7 @@
 
     <body>
         <!--头栏-->
-<!--        <header class="mui-bar mui-bar-nav header-a-l">
-            <h1 class="mui-title header-a-l">今日热搜</h1>	
-        </header>-->
+
 
         <!--页面主内容区开始-->
         <div class="mui-content" style="background-color:#fff;">
@@ -52,7 +50,18 @@
                         </section>
                     </section>
                 </section>
-            </div><br/>
+            </div>
+
+            <div class="mui-row" style="background-color:rgb(231,242,248); ">
+                <div class="tab-div">
+                    <div class="tab-div-title">
+                        <input type="text" class="mui-input-clear" style="border:0px;" placeholder="关键字搜索" id="keywordss">
+                    </div>
+                    <div class="tab-div-right">
+                        <button type="button" class="mui-btn mui-btn-success" onclick="ss()" >搜&nbsp;索</button>
+                    </div>
+                </div>
+            </div>
 
             <div class="mui-row">
                 <ul class="mui-table-view">
@@ -69,15 +78,18 @@
 
 </html>
 <script type="text/javascript">
-            mui(".mui-progressbar").each(function () {
-                mui(this).progressbar({progress: this.getAttribute("data-progress")}).show();
-            });
-            function download(id) {
-                window.open("/index.php/home/zxw/wxlist?key=" + id);
-            }
-            
-            function hrefNew(key){
-                window.open("/index.php/home/zxw/hotlist?key=" + key);
-            }
+    mui(".mui-progressbar").each(function () {
+        mui(this).progressbar({progress: this.getAttribute("data-progress")}).show();
+    });
+
+
+    function hrefNew(key) {
+        window.open("/index.php/home/zxw/hotlist?key=" + key);
+    }
+
+    function ss() {
+        var keyword = $('#keywordss').val();
+        window.open("/index.php/home/zxw/hotlist?key=" + keyword);
+    }
 
 </script>

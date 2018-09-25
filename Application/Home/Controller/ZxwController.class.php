@@ -100,12 +100,6 @@ class ZxwController extends Controller {
                     'author_link' => array('.news-list li .txt-box .s-p .account', 'href'),
                     'datetime' => array('.news-list li .txt-box .s-p .s2', 'html'),
                 ))->data;
-//        if (empty($noticeArr)) {
-//            $html = file_get_contents("http://weixin.sogou.com/weixin?query=" . $key . "&s_from=hotnews&type=2&page=" . $page . "&ie=utf8");
-//            echo "http://weixin.sogou.com/weixin?query=" . $key . "&s_from=hotnews&type=2&page=" . $page . "&ie=utf8";
-//            echo $html;
-//            exit;
-//        }
 
         $returnData['ajaxLoad'] = '点击加载更多';
         $returnData['is_end'] = 0;
@@ -126,6 +120,15 @@ class ZxwController extends Controller {
             $returnData['data'] = $noticeArr;
         }
         $this->ajaxReturn($returnData);
+    }
+
+    public function index1() {
+        header("content-type:text/html;charset=utf-8");
+        $data = QueryList::Query("http://weixin.sogou.com/weixin?query=%E9%80%9A%E5%B7%9E&_sug_type_=&s_from=input&_sug_=n&type=1&page=2&ie=utf8", array(
+                    'title' => array('.news-box ul li .gzh-box2 .txt-box a', 'text'),
+                    'info' => array('.news-box ul li', 'text','-.ew-pop -script'),
+                ))->data;
+        dump($data);
     }
 
 }
