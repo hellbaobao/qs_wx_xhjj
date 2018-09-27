@@ -17,12 +17,12 @@
 
     <body id="body">
         <!--主体部分-->
-        <div class="mui-content" style="background-color: #fff;">
+        <div class="mui-content">
 
 
             <div>
                 <!--list页面部分-->
-                <ul class="mui-table-view" id="noticeList">
+                <ul class="mui-table-view" id="noticeList" style="background-color: #efeff4">
                 </ul>
                 <!--动态加载模块-->
                 <button id="loadMore" type="button" data-loading-icon="mui-spinner mui-spinner-custom" style="border:0px;width: 100%;color:#999;padding: 12px 0px;" class="mui-btn" sth onclick="loadMore()"></button>
@@ -55,16 +55,17 @@
                                 for (var i = 0; i < data.data.length; i++) {
 
 
-                                    str += '<div class="mui-card" style="border: 1px solid #bbb;box-shadow: 0 0 10px #bbb;">';
-                                    str += '<a class="mui-card-header" style="color:#000;" href="' + data.data[i]["href"] + '" target="_blank">('+ data.data[i]["id"]+')&nbsp;'+data.data[i]["title"] + '</a>';
+                                    str += '<div class="mui-card" >';
+                                    //   str += '<a class="mui-card-header" style="color:#000;" href="' + data.data[i]["href"] + '" target="_blank">' + data.data[i]["id"] + '&nbsp;' + data.data[i]["title"] + '</a>';
                                     str += '<a class="mui-card-content" style="color:#000;" href="' + data.data[i]["href"] + '" target="_blank">';
                                     str += '<div class="mui-card-content-inner">';
+                                    str += '<p style="color:#333;font-size:1.2em;">' + data.data[i]["title"] + '</p>';
                                     str += '<p>' + data.data[i]["info"] + '</p>';
                                     str += '</div>';
                                     str += '</a>';
                                     str += '<div class="mui-card-footer">';
                                     str += '<a href="' + data.data[i]["author_link"] + '" target="_blank"  class="mui-card-link">【' + data.data[i]["author"] + '】</a>';
-                                    str += '<a class="mui-card-link">' + data.data[i]["datetime"] + '</a>';
+                                    str += '<p class="mui-card-link">' + data.data[i]["datetime"] + '</p>';
                                     str += '</div>';
                                     str += '</div>';
 

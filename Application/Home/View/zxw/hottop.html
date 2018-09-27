@@ -24,12 +24,12 @@
         <script src="__PUBLIC__/home/js/common.js"></script>
     </head>
 
-    <body>
+    <body style="background-color: #efeff4">
         <!--头栏-->
 
 
         <!--页面主内容区开始-->
-        <div class="mui-content" style="background-color:#fff;">
+        <div class="mui-content" style="background-color: #fff;">
             <div>
                 <section style="padding:10px 10px;background:#e7f2f8;">
                     <section>
@@ -64,7 +64,7 @@
             </div>
 
             <div class="mui-row">
-                <ul class="mui-table-view">
+                <ul class="mui-table-view" >
                     <foreach name="list" item="vo" key="k" >
                         <li class="mui-table-view-cell" onclick="hrefNew('{$vo.title}')">{$k+1}.{$vo.title}
                             <span class="mui-badge">热度：{$vo.hot}</span>

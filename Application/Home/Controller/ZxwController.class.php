@@ -35,6 +35,13 @@ class ZxwController extends Controller {
         $this->display();
     }
 
+    public function sylist() {
+        $key = $_GET['key'];
+        $this->assign('key', $key);
+        $this->assign('data', $data);
+        $this->display();
+    }
+
     /**
      * 获取列表
      */
@@ -124,11 +131,60 @@ class ZxwController extends Controller {
 
     public function index1() {
         header("content-type:text/html;charset=utf-8");
-        $data = QueryList::Query("http://weixin.sogou.com/weixin?query=%E9%80%9A%E5%B7%9E&_sug_type_=&s_from=input&_sug_=n&type=1&page=2&ie=utf8", array(
-                    'title' => array('.news-box ul li .gzh-box2 .txt-box a', 'text'),
-                    'info' => array('.news-box ul li', 'text','-.ew-pop -script'),
+        $data = QueryList::Query("http://mp.weixin.qq.com/profile?src=3&timestamp=1537929019&ver=1&signature=OGvML1uTg5kbgfBq-agP-VTNqy0EbXen-YS169hnjYAMdaCRBQ4xFfrb5tdcDDft5dLdmflyH*b7YTHXm*Q4zg==", array(
+                    'title' => array('.page_profile_info .page_profile_info_inner .profile_info_area .profile_info_group .profile_info strong', 'text'),
+                    'account' => array('.page_profile_info .page_profile_info_inner .profile_info_area .profile_info_group .profile_info p', 'text'),
+                    'img' => array('.page_profile_info .page_profile_info_inner .profile_info_area .profile_info_group .profile_avatar img', 'src'),
                 ))->data;
         dump($data);
+    }
+
+    public function ylindex() {
+        $url = "http://www.92yilin.com/";
+        $reg = array(
+            'title' => array('.booklist td a', 'text', 'strong'),
+            'href' => array('.booklist td a', 'href'),
+        );
+        $data = QueryList::Query($url, $reg, '', 'utf-8', 'gb2312', TRUE)->data;
+
+        $this->assign('data', $data);
+        $this->display();
+    }
+
+    public function yllist() {
+        $key = $_GET['key'];
+        $url = "http://www.92yilin.com/" . $key;
+        $keyArr = explode('/', $key);
+        $reg = array(
+            'title' => array('.maglisttitle a', 'text'),
+            'href' => array('.maglisttitle a', 'href'),
+            'img' => array('.sidebarBlock .center img', 'src'),
+        );
+        $data = QueryList::Query($url, $reg, '', 'utf-8', 'utf-8', TRUE)->data;
+
+        for ($i = 0; $i < count($data); $i++) {
+            $data[$i]['href'] = $keyArr[0] . "/" . $data[$i]['href'];
+        }
+
+        $this->assign('data', $data);
+        $this->assign('date', $keyArr[0] );
+        $this->display();
+    }
+
+    public function yldetail() {
+        $key = $_GET['key'];
+        $url = "http://www.92yilin.com/" . $key;
+        $reg = array(
+            'title' => array('.blkContainerSblk  h1', 'text'),
+            'author' => array('#pub_date', 'text'),
+            'from' => array('#media_name', 'text'),
+            'content' => array('.blkContainerSblkCon', 'html', '-.contentAd'),
+        );
+        $data = QueryList::Query($url, $reg, '', 'utf-8', 'utf-8', TRUE)->data;
+        
+        $this->assign('data', $data[0]);
+        $this->display();
+
     }
 
 }
